@@ -19,6 +19,14 @@ config/icon="res://icon.svg"
 
 settings/stdout/verbose_stdout=true
 
+[dotnet]
+
+project/assembly_name="Android Plugin Demo"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SnookerShootoutClock/plugin.cfg")
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
