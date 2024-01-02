@@ -1,0 +1,225 @@
+[gd_scene load_steps=23 format=3 uid="uid://bapo3s5h34h3s"]
+
+[ext_resource type="Script" path="res://src/ClockMenu.cs" id="1_udgs2"]
+[ext_resource type="Script" path="res://src/ClockSettings.cs" id="2_ioy27"]
+[ext_resource type="AudioStream" uid="uid://dam2jiuorsmhr" path="res://audio/ALRMBell_Bell of a level crossing (ID 0899)_BSB.wav" id="3_7u44s"]
+[ext_resource type="Script" path="res://src/FrameTimer.cs" id="3_l04jf"]
+[ext_resource type="Theme" uid="uid://b2sr5sg70iebv" path="res://themes/Button.theme" id="3_p5q3h"]
+[ext_resource type="Material" uid="uid://ctwkvrdg6wsqq" path="res://shaders/Pulsating.material" id="4_8vnbg"]
+[ext_resource type="AudioStream" uid="uid://bpgfputm68c28" path="res://audio/BELLHand_Counter bell (ID 0479)_BSB.wav" id="4_a86ff"]
+[ext_resource type="Texture2D" uid="uid://of5bdqegproy" path="res://art/shot_button_normal.png" id="4_qflqa"]
+[ext_resource type="Texture2D" uid="uid://de6obsym8rjsw" path="res://art/shot_button_pressed.png" id="5_6f2jl"]
+[ext_resource type="Script" path="res://src/ShotButton.cs" id="7_jjyj6"]
+[ext_resource type="Shader" path="res://shaders/PulsatingHighlight.gdshader" id="7_vu3ju"]
+[ext_resource type="Script" path="res://src/PauseButton.cs" id="8_21aak"]
+[ext_resource type="Texture2D" uid="uid://cuqh3v4rv8xxe" path="res://icon.svg" id="8_fhph0"]
+[ext_resource type="Script" path="res://src/ShotTimer.cs" id="8_ps7p3"]
+[ext_resource type="AudioStream" uid="uid://b4iarraj5np4c" path="res://audio/long-summer_(reason_Voodoo_Lead).wav" id="12_xqgud"]
+[ext_resource type="AudioStream" uid="uid://4vp1vbkpeegt" path="res://audio/half-time-announcement.ogg" id="14_6x7y8"]
+[ext_resource type="AudioStream" uid="uid://cqmt0k3qx4c3x" path="res://audio/countdown-blip_(reason_vibes-on-stage).wav" id="14_yalko"]
+[ext_resource type="AudioStream" uid="uid://bslsw57p8dk2o" path="res://audio/one-minute.ogg" id="15_dsgj4"]
+[ext_resource type="AudioStream" uid="uid://dmat3416lu2dh" path="res://audio/30-seconds.ogg" id="16_p13iy"]
+[ext_resource type="AudioStream" uid="uid://cb1h4yc6qk8m" path="res://audio/15-seconds.ogg" id="20_6adjr"]
+
+[sub_resource type="Resource" id="Resource_drmvt"]
+script = ExtResource("2_ioy27")
+FrameLength = 30
+ShotLength_Long = 15
+ShotLength_Short = 10
+FrameEndTickingLength_Slow = 25
+FrameEndTickingLength_Fast = 15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qcykj"]
+shader = ExtResource("7_vu3ju")
+shader_parameter/isEnabled = false
+shader_parameter/pulsation_rate = 3.39
+
+[node name="ColorRect" type="ColorRect" node_paths=PackedStringArray("_frameTimer", "_frameHalfTimeTimer", "_frameTimeLabel", "_shotTimer", "_shotTimeLabel", "_frameLastMinuteTimer", "_frameLastHalfMinuteTimer", "_frameLast15SecondsTimer", "_frameLastMinute", "_frameLastHalfMinute", "_frameLast15Seconds", "_playPauseButton", "_shotButton", "_exitButton", "_shotStartSound", "_shotEndSound", "_frameEndSound", "_frameHalfTimeSound")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+color = Color(0.211765, 0.196078, 0.105882, 1)
+script = ExtResource("1_udgs2")
+_frameTimer = NodePath("Control/VBoxContainer/FrameTimeLabel/FrameTimer")
+_frameHalfTimeTimer = NodePath("Control/VBoxContainer/FrameTimeLabel/FrameTimer_Half_Time")
+_frameTimeLabel = NodePath("Control/VBoxContainer/FrameTimeLabel")
+_shotTimer = NodePath("Control/VBoxContainer/ShotButton/ShotTimeLabel/ShotTimer")
+_shotTimeLabel = NodePath("Control/VBoxContainer/ShotButton/ShotTimeLabel")
+_frameLastMinuteTimer = NodePath("Control/VBoxContainer/FrameTimeLabel/FrameTimer_Last_Minute")
+_frameLastHalfMinuteTimer = NodePath("Control/VBoxContainer/FrameTimeLabel/FrameTimer_Last_30s")
+_frameLast15SecondsTimer = NodePath("Control/VBoxContainer/FrameTimeLabel/FrameTimer_Last_15s")
+_frameLastMinute = NodePath("Control/FrameLastMinuteSound")
+_frameLastHalfMinute = NodePath("Control/FrameLast30SecondsSound")
+_frameLast15Seconds = NodePath("Control/FrameLast15SecondsSound")
+_playPauseButton = NodePath("Control/VBoxContainer/BoxContainer/Pause")
+_shotButton = NodePath("Control/VBoxContainer/ShotButton")
+_exitButton = NodePath("Control/VBoxContainer/Exit")
+_shotStartSound = NodePath("Control/ShotStartSound")
+_shotEndSound = NodePath("Control/ShotEndSound")
+_frameEndSound = NodePath("Control/FrameEndSound")
+_frameHalfTimeSound = NodePath("Control/FrameHalfTimeSound")
+Settings = SubResource("Resource_drmvt")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 50.0
+offset_top = 50.0
+offset_right = -50.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.105882, 0.298039, 0.133333, 1)
+
+[node name="Control" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
+layout_mode = 2
+
+[node name="FrameTimeLabel" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+size_flags_stretch_ratio = 0.0
+theme_override_font_sizes/font_size = 70
+text = "10:04"
+horizontal_alignment = 1
+
+[node name="FrameTimer" type="Timer" parent="Control/VBoxContainer/FrameTimeLabel" node_paths=PackedStringArray("_endSound", "_countdownSound")]
+one_shot = true
+script = ExtResource("3_l04jf")
+_endSound = NodePath("../../../FrameEndSound")
+_countdownSound = NodePath("../../../CountdownSound")
+
+[node name="FrameTimer_Half_Time" type="Timer" parent="Control/VBoxContainer/FrameTimeLabel"]
+one_shot = true
+
+[node name="FrameTimer_Last_Minute" type="Timer" parent="Control/VBoxContainer/FrameTimeLabel"]
+one_shot = true
+
+[node name="FrameTimer_Last_30s" type="Timer" parent="Control/VBoxContainer/FrameTimeLabel"]
+one_shot = true
+
+[node name="FrameTimer_Last_15s" type="Timer" parent="Control/VBoxContainer/FrameTimeLabel"]
+one_shot = true
+
+[node name="Exit" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+focus_mode = 0
+theme = ExtResource("3_p5q3h")
+theme_override_colors/font_color = Color(1, 0.172549, 0.12549, 1)
+theme_override_font_sizes/font_size = 60
+text = "Lopeta"
+
+[node name="ShotButton" type="TextureButton" parent="Control/VBoxContainer"]
+material = ExtResource("4_8vnbg")
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+focus_mode = 0
+toggle_mode = true
+texture_normal = ExtResource("4_qflqa")
+texture_pressed = ExtResource("5_6f2jl")
+stretch_mode = 5
+script = ExtResource("7_jjyj6")
+
+[node name="ShotTimeLabel" type="Label" parent="Control/VBoxContainer/ShotButton"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -82.5
+offset_bottom = 82.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 2
+theme_override_font_sizes/font_size = 120
+text = "00:15"
+horizontal_alignment = 1
+
+[node name="ShotTimer" type="Timer" parent="Control/VBoxContainer/ShotButton/ShotTimeLabel" node_paths=PackedStringArray("_endSound", "_countdownSound")]
+one_shot = true
+script = ExtResource("8_ps7p3")
+_endSound = NodePath("../../../../ShotEndSound")
+_countdownSound = NodePath("../../../../CountdownSound")
+
+[node name="BoxContainer" type="BoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Pause" type="Button" parent="Control/VBoxContainer/BoxContainer" node_paths=PackedStringArray("_highlightRect")]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("3_p5q3h")
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 70
+toggle_mode = true
+text = "Pysäytä"
+script = ExtResource("8_21aak")
+_highlightRect = NodePath("Control/HighlightRect")
+
+[node name="Control" type="Control" parent="Control/VBoxContainer/BoxContainer/Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+mouse_filter = 2
+
+[node name="HighlightRect" type="TextureRect" parent="Control/VBoxContainer/BoxContainer/Pause/Control"]
+material = SubResource("ShaderMaterial_qcykj")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_fhph0")
+
+[node name="ShotEndSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("12_xqgud")
+
+[node name="ShotStartSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("4_a86ff")
+
+[node name="CountdownSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("14_yalko")
+
+[node name="FrameEndSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("3_7u44s")
+
+[node name="FrameHalfTimeSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("14_6x7y8")
+
+[node name="FrameLastMinuteSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("15_dsgj4")
+
+[node name="FrameLast30SecondsSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("16_p13iy")
+
+[node name="FrameLast15SecondsSound" type="AudioStreamPlayer" parent="Control"]
+stream = ExtResource("20_6adjr")

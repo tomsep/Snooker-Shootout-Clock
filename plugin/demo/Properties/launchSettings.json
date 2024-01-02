@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Debug Main Scene": {
+      "commandName": "Executable",
+      "executablePath": "$(Godot42)",
+      "commandLineArgs": "--path . --verbose",
+      "workingDirectory": ".",
+      "nativeDebugging": true
+    }
+  }
+}

@@ -31,4 +31,11 @@ class GodotAndroidPlugin(godot: Godot): GodotPlugin(godot) {
         // Set the volume level for music stream
         audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, validVolume, 0)
     }
+
+    @UsedByGodot
+    private fun getMaxVolume(): Int {
+        val context = activity!!.applicationContext
+        val audioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+        return audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+    }
 }
