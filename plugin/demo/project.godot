@@ -13,6 +13,8 @@ config_version=5
 config/name="Android Plugin Demo"
 run/main_scene="res://src/Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
+boot_splash/bg_color=Color(0.105882, 0.298039, 0.133333, 1)
+boot_splash/image="res://art/logo.png"
 config/icon="res://icon.svg"
 
 [autoload]
