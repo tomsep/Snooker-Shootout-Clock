@@ -11,13 +11,64 @@ config_version=5
 [application]
 
 config/name="Android Plugin Demo"
-run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+run/main_scene="res://src/Main.tscn"
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
+boot_splash/bg_color=Color(0.105882, 0.298039, 0.133333, 1)
+boot_splash/image="res://art/logo.png"
 config/icon="res://icon.svg"
+
+[autoload]
+
+AndroidVolumeService="*res://src/android_volume_service.gd"
+EventAggregatorService="*res://src/EventAggregatorService.cs"
+CommandService="*res://src/CommandService.cs"
 
 [debug]
 
 settings/stdout/verbose_stdout=true
+
+[display]
+
+window/size/viewport_width=648
+window/size/viewport_height=1152
+window/size/window_width_override=324
+window/size/window_height_override=576
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+window/handheld/orientation=1
+
+[dotnet]
+
+project/assembly_name="Android Plugin Demo"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/SnookerShootoutClock/plugin.cfg")
+
+[importer_defaults]
+
+texture={
+"compress/channel_pack": 0,
+"compress/hdr_compression": 1,
+"compress/high_quality": false,
+"compress/lossy_quality": 0.7,
+"compress/mode": 2,
+"compress/normal_map": 0,
+"detect_3d/compress_to": 1,
+"editor/convert_colors_with_editor_theme": false,
+"editor/scale_with_editor_scale": false,
+"mipmaps/generate": true,
+"mipmaps/limit": -1,
+"process/fix_alpha_border": true,
+"process/hdr_as_srgb": false,
+"process/hdr_clamp_exposure": false,
+"process/normal_map_invert_y": false,
+"process/premult_alpha": false,
+"process/size_limit": 0,
+"roughness/mode": 0,
+"roughness/src_normal": "",
+"svg/scale": 1.0
+}
 
 [rendering]
 
