@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bapo3s5h34h3s"]
+[gd_scene load_steps=26 format=3 uid="uid://bapo3s5h34h3s"]
 
 [ext_resource type="Script" path="res://src/ClockMenu.cs" id="1_udgs2"]
 [ext_resource type="Script" path="res://src/ClockSettings.cs" id="2_ioy27"]
@@ -14,6 +14,9 @@
 [ext_resource type="Script" path="res://src/PauseButton.cs" id="8_21aak"]
 [ext_resource type="Texture2D" uid="uid://cuqh3v4rv8xxe" path="res://icon.svg" id="8_fhph0"]
 [ext_resource type="Script" path="res://src/ShotTimer.cs" id="8_ps7p3"]
+[ext_resource type="Texture2D" uid="uid://beuyhmn3gskql" path="res://art/sound-icon.png" id="10_bo4fs"]
+[ext_resource type="Texture2D" uid="uid://dcof2id6bd6fn" path="res://art/slider_thumb.png" id="11_4d7fi"]
+[ext_resource type="Script" path="res://src/VolumeSlider.cs" id="12_ko5bi"]
 [ext_resource type="AudioStream" uid="uid://b4iarraj5np4c" path="res://audio/long-summer_(reason_Voodoo_Lead).wav" id="12_xqgud"]
 [ext_resource type="AudioStream" uid="uid://4vp1vbkpeegt" path="res://audio/half-time-announcement.ogg" id="14_6x7y8"]
 [ext_resource type="AudioStream" uid="uid://cqmt0k3qx4c3x" path="res://audio/countdown-blip_(reason_vibes-on-stage).wav" id="14_yalko"]
@@ -26,8 +29,6 @@ script = ExtResource("2_ioy27")
 FrameLength = 30
 ShotLength_Long = 15
 ShotLength_Short = 10
-FrameEndTickingLength_Slow = 25
-FrameEndTickingLength_Fast = 15
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qcykj"]
 shader = ExtResource("7_vu3ju")
@@ -160,6 +161,44 @@ one_shot = true
 script = ExtResource("8_ps7p3")
 _endSound = NodePath("../../../../ShotEndSound")
 _countdownSound = NodePath("../../../../CountdownSound")
+
+[node name="Control" type="Control" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.29
+
+[node name="TextureRect" type="TextureRect" parent="Control/VBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -128.0
+offset_right = 256.0
+offset_bottom = 128.0
+grow_vertical = 2
+scale = Vector2(0.49, 0.49)
+pivot_offset = Vector2(-20.09, 136.755)
+texture = ExtResource("10_bo4fs")
+stretch_mode = 4
+
+[node name="HSlider" type="HSlider" parent="Control/VBoxContainer/Control"]
+modulate = Color(0.0941176, 0.254902, 0.305882, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 92.0
+offset_top = -33.0
+offset_right = -40.0
+offset_bottom = 39.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_icons/grabber = ExtResource("11_4d7fi")
+theme_override_icons/grabber_highlight = ExtResource("11_4d7fi")
+theme_override_icons/grabber_disabled = ExtResource("11_4d7fi")
+rounded = true
+script = ExtResource("12_ko5bi")
 
 [node name="BoxContainer" type="BoxContainer" parent="Control/VBoxContainer"]
 layout_mode = 2
