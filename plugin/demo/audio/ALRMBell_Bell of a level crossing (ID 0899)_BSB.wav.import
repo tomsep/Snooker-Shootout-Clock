@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dam2jiuorsmhr"
+path="res://.godot/imported/ALRMBell_Bell of a level crossing (ID 0899)_BSB.wav-028773b7c06e8c75ff6201e27e9dda13.sample"
+
+[deps]
+
+source_file="res://audio/ALRMBell_Bell of a level crossing (ID 0899)_BSB.wav"
+dest_files=["res://.godot/imported/ALRMBell_Bell of a level crossing (ID 0899)_BSB.wav-028773b7c06e8c75ff6201e27e9dda13.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
