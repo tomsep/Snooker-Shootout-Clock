@@ -1,3 +1,26 @@
+# Snooker Shootout -Pelikello
+(English below)
+
+## Asennus 
+Vain Android yhteensopiva. 
+
+1. Lataa viimeisin versio [tästä](https://github.com/tomsep/Snooker-Shootout-Clock/releases/download/v1.0.0-beta.1/snooker-shootout-clock.apk). 
+2. Avaa ja asenna **snooker-shootout-clock.apk** tiedosto. Koska tämä sovellus ei ainakaan vielä ole saatavilla Google Play -kaupassa **tarvitsee ulkopuolisista lähteistä asentamiseen antaa erillinen lupa**. Katso lisätietoja [sovelluksen lataaminen muista lähteistä](https://support.google.com/pixelphone/answer/7391672?hl=fi#zippy=%2Csovellusten-lataaminen-muista-l%C3%A4hteist%C3%A4).
+
+## Sovelluksen ominaisuudet 
+
+* pelikello 10min (säädettävissä) 
+* lyöntikello 15s. Vaihtuu puoliajan jälkeen 10s. Kaukosäätimellä etäohjattavissa. 
+* väliaikailmoitukset englanniksi (puoliaika, 1min, 30s, 15s)
+* pelin pysäytys
+
+
+## Lyöntikellon etäohjaus
+
+Lyöntikello voidaan käynnistää ja pysäyttää etäohjauksella. Tarvitset Android yhteensopivan Bluetooth yhteydellä toimivan kameran etälaukaisimen. Tässä esimerkiksi Clash Ohlsonilta sellainen [linkki](https://www.clasohlson.com/fi/Puhelimen-kaukolaukaisin/p/38-8610).
+
+Yhdistä Bluetooth laite puhelimeesi. Sovelluksen ollessa auki etälaukaisimen painike tulkitaan lyöntikellon painamisena. Joka painalluksella puhelimen ääniasetus-valikko saattaa ponnahtaa hetkeksi näkyviin. Tämä johtuu siitä että taustalla etälaukaisin oikeasti ohjaa ääniasetusta, joka sovelluksessa tulkitaan lyöntikellon painamisena.
+
 # Snooker Shootout Clock
 Remote controllable Android application for tracking both frame time and shot time during a snooker shootout game.
 
