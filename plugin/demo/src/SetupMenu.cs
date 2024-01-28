@@ -5,10 +5,16 @@ public partial class SetupMenu : MarginContainer
 {
 	[Export] private Button _startButton;
     [Export] private GameTimeSelector _gameTimeSelector;
+    private CommandService _commandService;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
+        _commandService = GetNode<CommandService>("/root/CommandService");
+        int maxVolume = _commandService.GetMaxVolume();
+        if (_commandService.GetVolume() == maxVolume)
+            _commandService.SetVolume(maxVolume - 1);
+
         _startButton.Pressed += StartButton_Pressed;
 	}
 
