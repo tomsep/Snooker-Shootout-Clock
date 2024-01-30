@@ -5,6 +5,7 @@ public partial class SetupMenu : MarginContainer
 {
 	[Export] private Button _startButton;
     [Export] private GameTimeSelector _gameTimeSelector;
+    [Export] private ShotTimeSelector _shotTimeSelector;
     private CommandService _commandService;
 
     // Called when the node enters the scene tree for the first time.
@@ -24,8 +25,8 @@ public partial class SetupMenu : MarginContainer
         var settings = new ClockSettings()
         {
             FrameLength = _gameTimeSelector.Time,
-            ShotLength_Long = 15,
-            ShotLength_Short = 10,
+            ShotLength_Long = _shotTimeSelector.LongTime,
+            ShotLength_Short = _shotTimeSelector.ShortTime,
         };
         clockMenu.Initialize(settings);
         GetTree().Root.AddChild(clockMenu);

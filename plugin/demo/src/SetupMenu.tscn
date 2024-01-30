@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://celiqgaskafrl"]
+[gd_scene load_steps=7 format=3 uid="uid://celiqgaskafrl"]
 
 [ext_resource type="Script" path="res://src/SetupMenu.cs" id="1_agndg"]
 [ext_resource type="Texture2D" uid="uid://dcof2id6bd6fn" path="res://art/slider_thumb.png" id="2_ldmpq"]
 [ext_resource type="Script" path="res://src/VolumeSlider.cs" id="3_0lvwm"]
 [ext_resource type="Theme" uid="uid://b2sr5sg70iebv" path="res://themes/Button.theme" id="4_gqk2s"]
 [ext_resource type="Script" path="res://src/GameTimeSelector.cs" id="5_tokaq"]
+[ext_resource type="Script" path="res://src/ShotTimeSelector.cs" id="6_f2bes"]
 
 [node name="ColorRect" type="ColorRect"]
 anchors_preset = 15
@@ -30,7 +31,7 @@ grow_vertical = 2
 layout_mode = 2
 color = Color(0.105882, 0.298039, 0.133333, 1)
 
-[node name="Control" type="MarginContainer" parent="." node_paths=PackedStringArray("_startButton", "_gameTimeSelector")]
+[node name="Control" type="MarginContainer" parent="." node_paths=PackedStringArray("_startButton", "_gameTimeSelector", "_shotTimeSelector")]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -43,6 +44,7 @@ focus_mode = 2
 script = ExtResource("1_agndg")
 _startButton = NodePath("VBoxContainer/Button")
 _gameTimeSelector = NodePath("VBoxContainer/HBoxContainer/GameTimeLabel")
+_shotTimeSelector = NodePath("VBoxContainer/HBoxContainer2/ShotTimeLabel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 2
@@ -113,6 +115,45 @@ _decrementTimeButton = NodePath("../ReduceTimeButton")
 _incrementTimeButton = NodePath("../IncreaseTimeButton")
 
 [node name="IncreaseTimeButton" type="Button" parent="Control/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("4_gqk2s")
+theme_override_font_sizes/font_size = 96
+text = "+"
+flat = true
+
+[node name="ShotTimeTitle" type="Label" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+size_flags_stretch_ratio = 0.43
+theme_override_font_sizes/font_size = 60
+text = "Lyöntiaika"
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
+layout_mode = 2
+
+[node name="ReduceTimeButton" type="Button" parent="Control/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 0
+theme = ExtResource("4_gqk2s")
+theme_override_font_sizes/font_size = 94
+text = "-"
+flat = true
+
+[node name="ShotTimeLabel" type="Label" parent="Control/VBoxContainer/HBoxContainer2" node_paths=PackedStringArray("_decrementTimeButton", "_incrementTimeButton")]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 73
+text = "15 / 10"
+horizontal_alignment = 1
+script = ExtResource("6_f2bes")
+_decrementTimeButton = NodePath("../ReduceTimeButton")
+_incrementTimeButton = NodePath("../IncreaseTimeButton")
+
+[node name="IncreaseTimeButton" type="Button" parent="Control/VBoxContainer/HBoxContainer2"]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 0
