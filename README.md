@@ -4,13 +4,13 @@
 ## Asennus 
 Vain Android yhteensopiva. 
 
-1. Lataa viimeisin versio [tästä](https://github.com/tomsep/Snooker-Shootout-Clock/releases/download/v1.0.0-beta.1/snooker-shootout-clock.apk). 
+1. Lataa viimeisin versio [tästä](https://github.com/tomsep/Snooker-Shootout-Clock/releases/download/v1.0.0-beta.2/snooker-shootout-clock.apk). 
 2. Avaa ja asenna **snooker-shootout-clock.apk** tiedosto. Koska tämä sovellus ei ainakaan vielä ole saatavilla Google Play -kaupassa **tarvitsee ulkopuolisista lähteistä asentamiseen antaa erillinen lupa**. Katso lisätietoja [sovelluksen lataaminen muista lähteistä](https://support.google.com/pixelphone/answer/7391672?hl=fi#zippy=%2Csovellusten-lataaminen-muista-l%C3%A4hteist%C3%A4).
 
 ## Sovelluksen ominaisuudet 
 
-* pelikello 10min (säädettävissä) 
-* lyöntikello 15s. Vaihtuu puoliajan jälkeen 10s. Kaukosäätimellä etäohjattavissa. 
+* pelikello (säädettävissä). Oletuksena 10 min.
+* lyöntikello (säädettävissä). Oletuksena 15s, joka vaihtuu puoliajan jälkeen 10s. Kaukosäätimellä etäohjattavissa. 
 * väliaikailmoitukset englanniksi (puoliaika, 1min, 30s, 15s)
 * pelin pysäytys
 
