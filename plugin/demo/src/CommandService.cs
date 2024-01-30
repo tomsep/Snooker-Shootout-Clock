@@ -5,27 +5,64 @@ using System;
 public partial class CommandService : Node
 {
     private int _referenceVolume = 0;
+    private DateTime _lastFrameTimestamp;
     private int _count = 0;
     private Node _volumeService;
     private IEventAggregator _events;
+
+    private bool _volumeControlEnabled;
+    public bool VolumeControlEnabled
+    {
+        get => _volumeControlEnabled;
+        set
+        {
+            if (_volumeControlEnabled != value)
+            {
+                SetVolume(GetVolume());
+            }
+            _volumeControlEnabled = value;
+        }
+    }
 
     public override void _Ready()
     {
         _events = EventAggregatorService.EventAggregator();
         _volumeService = GetNode("/root/AndroidVolumeService");
         _referenceVolume = GetVolume();
+        _lastFrameTimestamp = DateTime.UtcNow;
     }
 
     public override void _Process(double delta)
     {
-        // Publish event if volume was changed outside this application
-        // i.e. remote controller changed or hardware volume button.
-        int volume = GetVolume();
-        if (volume != _referenceVolume)
+        bool appWasPaused = AppWasPaused();
+        if (appWasPaused)
         {
-            SetVolume(_referenceVolume);
-            _events.GetEvent<ShortResetEvent>().Publish();
+            // Set new reference volume
+            SetVolume(GetVolume());
+            GD.Print("Set new reference volume after application pause");
         }
+        else
+        {
+            // Publish event if volume was changed outside this application
+            // i.e. remote controller changed or hardware volume button.
+            if (GetVolume() != _referenceVolume && VolumeControlEnabled)
+            {
+                SetVolume(_referenceVolume);
+                _events.GetEvent<ShotResetEvent>().Publish();
+            }
+            else if (GetVolume() != _referenceVolume)
+            {
+                SetVolume(GetVolume());
+            }
+        }
+
+        _lastFrameTimestamp = DateTime.UtcNow;
+    }
+
+    private bool AppWasPaused()
+    {
+        var timeSinceLastFrame = (DateTime.UtcNow - _lastFrameTimestamp).TotalSeconds;
+        return timeSinceLastFrame > 0.5;
     }
 
     public int GetVolume()
@@ -35,7 +72,7 @@ public partial class CommandService : Node
 
     public int GetMaxVolume()
     {
-        return _volumeService.Call("get_max_volume").AsInt32();
+        return _volumeService.Call("get_max_volume").AsInt32() - 1;
     }
 
     public void SetVolume(int volume)
@@ -50,9 +87,11 @@ public partial class CommandService : Node
     {
         if (@event.IsActionPressed(Inputs.Reset))
         {
-            _events.GetEvent<ShortResetEvent>().Publish();
+            _events.GetEvent<ShotResetEvent>().Publish();
         }
     }
 }
 
-public class ShortResetEvent : PubSubEvent { }
+public class ShotResetEvent : PubSubEvent { }
+
+public class ReferenceVolumeChangedEvent : PubSubEvent { }

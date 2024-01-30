@@ -5,10 +5,19 @@ public partial class SetupMenu : MarginContainer
 {
 	[Export] private Button _startButton;
     [Export] private GameTimeSelector _gameTimeSelector;
+    [Export] private ShotTimeSelector _shotTimeSelector;
+    private CommandService _commandService;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
+        _commandService = GetNode<CommandService>("/root/CommandService");
+        _commandService.VolumeControlEnabled = false;
+
+        int maxVolume = _commandService.GetMaxVolume();
+        if (_commandService.GetVolume() == maxVolume)
+            _commandService.SetVolume(maxVolume);
+
         _startButton.Pressed += StartButton_Pressed;
 	}
 
@@ -18,8 +27,8 @@ public partial class SetupMenu : MarginContainer
         var settings = new ClockSettings()
         {
             FrameLength = _gameTimeSelector.Time,
-            ShotLength_Long = 15,
-            ShotLength_Short = 10,
+            ShotLength_Long = _shotTimeSelector.LongTime,
+            ShotLength_Short = _shotTimeSelector.ShortTime,
         };
         clockMenu.Initialize(settings);
         GetTree().Root.AddChild(clockMenu);
