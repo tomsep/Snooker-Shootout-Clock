@@ -18,11 +18,11 @@
 [ext_resource type="Texture2D" uid="uid://dcof2id6bd6fn" path="res://art/slider_thumb.png" id="11_4d7fi"]
 [ext_resource type="Script" path="res://src/VolumeSlider.cs" id="12_ko5bi"]
 [ext_resource type="AudioStream" uid="uid://b4iarraj5np4c" path="res://audio/long-summer_(reason_Voodoo_Lead).wav" id="12_xqgud"]
-[ext_resource type="AudioStream" uid="uid://4vp1vbkpeegt" path="res://audio/half-time-announcement.ogg" id="14_6x7y8"]
 [ext_resource type="AudioStream" uid="uid://cqmt0k3qx4c3x" path="res://audio/countdown-blip_(reason_vibes-on-stage).wav" id="14_yalko"]
-[ext_resource type="AudioStream" uid="uid://bslsw57p8dk2o" path="res://audio/one-minute.ogg" id="15_dsgj4"]
-[ext_resource type="AudioStream" uid="uid://dmat3416lu2dh" path="res://audio/30-seconds.ogg" id="16_p13iy"]
-[ext_resource type="AudioStream" uid="uid://cb1h4yc6qk8m" path="res://audio/15-seconds.ogg" id="20_6adjr"]
+[ext_resource type="AudioStream" uid="uid://bxx88k4x3lex8" path="res://audio/half-time-announcement.wav" id="20_3obmj"]
+[ext_resource type="AudioStream" uid="uid://dceg572hqhdee" path="res://audio/one-minute.wav" id="21_xhvkf"]
+[ext_resource type="AudioStream" uid="uid://bh8xcg5salagf" path="res://audio/30-seconds.wav" id="22_rqiw5"]
+[ext_resource type="AudioStream" uid="uid://dsfsnitpsf4em" path="res://audio/15-seconds.wav" id="23_6ciol"]
 
 [sub_resource type="Resource" id="Resource_drmvt"]
 script = ExtResource("2_ioy27")
@@ -244,6 +244,7 @@ stream = ExtResource("12_xqgud")
 
 [node name="ShotStartSound" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("4_a86ff")
+volume_db = -1.0
 
 [node name="CountdownSound" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource("14_yalko")
@@ -252,13 +253,13 @@ stream = ExtResource("14_yalko")
 stream = ExtResource("3_7u44s")
 
 [node name="FrameHalfTimeSound" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("14_6x7y8")
+stream = ExtResource("20_3obmj")
 
 [node name="FrameLastMinuteSound" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("15_dsgj4")
+stream = ExtResource("21_xhvkf")
 
 [node name="FrameLast30SecondsSound" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("16_p13iy")
+stream = ExtResource("22_rqiw5")
 
 [node name="FrameLast15SecondsSound" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource("20_6adjr")
+stream = ExtResource("23_6ciol")
