@@ -45,8 +45,8 @@ public partial class ClockMenu : Control
     public override void _Ready()
     {
         _events = EventAggregatorService.EventAggregator();
-        _events.GetEvent<ShortResetEvent>().Subscribe(ShotReset);
-
+        _events.GetEvent<ShotResetEvent>().Subscribe(ShotReset);
+        GetNode<CommandService>("/root/CommandService").VolumeControlEnabled = true;
         _frameTimer.Timeout += FrameTimer_Timeout;
         _frameHalfTimeTimer.Timeout += FrameHalfTimeTimer_Timeout;
         _shotTimer.Timeout += ShotTimer_Timeout;
@@ -82,7 +82,7 @@ public partial class ClockMenu : Control
     public override void _ExitTree()
     {
         base._ExitTree();
-        _events.GetEvent<ShortResetEvent>().Unsubscribe(ShotReset);
+        _events.GetEvent<ShotResetEvent>().Unsubscribe(ShotReset);
     }
 
     private void ExitButton_Pressed()

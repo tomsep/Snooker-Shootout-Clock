@@ -13,8 +13,8 @@ public partial class VolumeSlider : HSlider
         _events = EventAggregatorService.EventAggregator();
         _events.GetEvent<ReferenceVolumeChangedEvent>().Subscribe(
             UpdateSliderWithoutNotify, ThreadOption.PublisherThread, false);
-        MaxValue = _commandService.GetMaxVolume() - 1;
-        Value = _commandService.GetVolume();
+        MaxValue = _commandService.GetMaxVolume();
+        Value = Math.Min(_commandService.GetVolume(), _commandService.GetMaxVolume());
         ValueChanged += VolumeSlider_ValueChanged;
     }
 

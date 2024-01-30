@@ -12,9 +12,11 @@ public partial class SetupMenu : MarginContainer
     public override void _Ready()
 	{
         _commandService = GetNode<CommandService>("/root/CommandService");
+        _commandService.VolumeControlEnabled = false;
+
         int maxVolume = _commandService.GetMaxVolume();
         if (_commandService.GetVolume() == maxVolume)
-            _commandService.SetVolume(maxVolume - 1);
+            _commandService.SetVolume(maxVolume);
 
         _startButton.Pressed += StartButton_Pressed;
 	}
