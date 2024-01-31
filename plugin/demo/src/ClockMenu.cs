@@ -188,21 +188,14 @@ public partial class ClockMenu : Control
             UpdateShotTimerDisplay(TimeSpan.FromSeconds(_shotTimer.TimeLeft));
     }
 
-    private int ConvertToDisplaySeconds(int seconds, int max)
-    {
-        return Math.Min(seconds + 1, max);
-    }
-
     private void UpdateFrameTimerDisplay(TimeSpan time)
     {
-        _frameTimeLabel.Text =
-            $"{time.Minutes:D2}:{ConvertToDisplaySeconds(time.Seconds, Settings.FrameLength):D2}";
+        _frameTimeLabel.Text = ToMMSSDisplayTime(time);
     }
 
     private void UpdateShotTimerDisplay(TimeSpan time)
     {
-        _shotTimeLabel.Text =
-            $"{time.Minutes:D2}:{ConvertToDisplaySeconds(time.Seconds, GetShotLength()):D2}";
+        _shotTimeLabel.Text = ToMMSSDisplayTime(time);
     }
 
     private int GetShotLength()
@@ -211,5 +204,17 @@ public partial class ClockMenu : Control
             return Settings.ShotLength_Short;
         else
             return Settings.ShotLength_Long;
+    }
+
+    private static string ToMMSSDisplayTime(TimeSpan timeSpan)
+    {
+        // Round up the seconds
+        var roundedSeconds = (int)Math.Ceiling(timeSpan.TotalSeconds);
+
+        // Create a new TimeSpan with the rounded seconds
+        var roundedTimeSpan = TimeSpan.FromSeconds(roundedSeconds);
+
+        // Format the TimeSpan to mm:ss
+        return roundedTimeSpan.ToString(@"mm\:ss");
     }
 }
