@@ -52,7 +52,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "Asetukset"
+text = "Settings"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Control/VBoxContainer"]
@@ -89,7 +89,7 @@ script = ExtResource("3_0lvwm")
 [node name="GameTimeTitle" type="Label" parent="Control/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
-text = "Peliaika"
+text = "FrameTime"
 horizontal_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/VBoxContainer"]
@@ -128,7 +128,7 @@ layout_mode = 2
 size_flags_vertical = 10
 size_flags_stretch_ratio = 0.43
 theme_override_font_sizes/font_size = 60
-text = "Lyöntiaika"
+text = "ShotTime"
 horizontal_alignment = 1
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="Control/VBoxContainer"]
@@ -171,4 +171,4 @@ size_flags_vertical = 10
 focus_mode = 0
 theme = ExtResource("4_gqk2s")
 theme_override_font_sizes/font_size = 60
-text = "Käynnistä"
+text = "Start"
